@@ -1,35 +1,37 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "target": "ES5",
+    // "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    // "experimentalDecorators": true,
+    // "emitDecoratorMetadata": true,
     "module": "ESNext",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "skipLibCheck": true,
     "allowJs": false,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "preserveConstEnums": true,
+    // "sourceMap": true,
+    // "outDir": "./dist",
+    // "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "strictNullChecks": true,
+    // "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "moduleResolution": "Node",
+    // "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    // "jsxImportSource": "@emotion/react",
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "@types", "src/**/*"],
+  "exclude": ["node_modules"]
 }
