@@ -30,7 +30,8 @@
     "strict": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "src"
   },
   "include": ["src", "@types", "src/**/*"],
   "exclude": ["node_modules"]
