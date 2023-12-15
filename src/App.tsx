@@ -7,7 +7,7 @@ export const enum ROUTER {
   MAIN = "/",
   HOME = "home",
   TEACHERS = "teachers",
-  FAVORITE = "favorite",
+  FAVORITES = "favorites",
 }
 
 const router = createBrowserRouter([
@@ -19,21 +19,21 @@ const router = createBrowserRouter([
       {
         index: true,
         async lazy() {
-          let { Home } = await import("pages/Home");
+          let { Home } = await import("./pages/Home");
           return { Component: Home };
         },
       },
       {
         path: ROUTER.TEACHERS,
         async lazy() {
-          let { Teachers } = await import("pages/Teachers");
+          let { Teachers } = await import("./pages/Teachers");
           return { Component: Teachers };
         },
       },
       {
-        path: ROUTER.FAVORITE,
+        path: ROUTER.FAVORITES,
         async lazy() {
-          let { Favorites } = await import("pages/Favorites");
+          let { Favorites } = await import("./pages/Favorites");
           return {
             Component: () => <PrivateRoute redirectTo={ROUTER.MAIN} component={<Favorites />} />,
           };

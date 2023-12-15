@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 
 const TeacherCard: FC = (): ReactElement => {
-  return <div>TeacherCard component</div>;
+  return <li>TeacherCard component</li>;
 };
 
 export default TeacherCard;
