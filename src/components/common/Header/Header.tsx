@@ -1,16 +1,17 @@
 import { FC, ReactElement } from "react";
+
 import AuthBar from "../AuthBar";
 import Logo from "../Logo";
 import NavBar from "../NavBar";
+import { HeaderStyled } from "./index";
 
 const Header: FC = (): ReactElement => {
   return (
-    <div>
-      Header component
+    <HeaderStyled>
       <Logo />
       <NavBar />
       <AuthBar />
-    </div>
+    </HeaderStyled>
   );
 };
 

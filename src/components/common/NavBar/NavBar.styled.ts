@@ -8,6 +8,7 @@ export const Nav = styled.nav<TStylesProps>`
   line-height: ${20 / 16};
 
   & > a {
+    padding: 14px 0;
     text-transform: capitalize;
 
     &.active::after {
