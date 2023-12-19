@@ -4,7 +4,7 @@ import { TStylesProps } from "shared.types";
 export const ContainerDiv = styled.div<TStylesProps>`
   width: 720px;
   padding: 98px 64px;
-  border-radius: 12px;
+  border-radius: 30px;
   background-color: ${({ theme }) => theme.color.background};
 `;
 

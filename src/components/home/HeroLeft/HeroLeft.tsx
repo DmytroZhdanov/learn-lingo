@@ -1,5 +1,6 @@
-import Button from "components/common/Button";
 import { FC, ReactElement } from "react";
+
+import Button from "components/common/Button";
 import { ContainerDiv, TitleH1, TitleSpan, TextP } from "./index";
 
 const HeroLeft: FC = (): ReactElement => {
@@ -14,7 +15,7 @@ const HeroLeft: FC = (): ReactElement => {
         proficiency to new heights by connecting with highly qualified and experienced tutors.
       </TextP>
 
-      <Button>Get started</Button>
+      <Button padding="16px 88px">Get started</Button>
     </ContainerDiv>
   );
 };
