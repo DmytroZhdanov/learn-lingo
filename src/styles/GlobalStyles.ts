@@ -202,7 +202,8 @@ export const GlobalStyles = css`
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     color: ${theme.color.black};
-    background-color: ${theme.color.background};
+    background-color: #ffffff;
+    /* background-color: ${theme.color.background}; */
   }
   /* ========================= /Common styles ========================= */
 `;

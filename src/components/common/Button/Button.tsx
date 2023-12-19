@@ -1,7 +1,11 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 
-const Button: FC = (): ReactElement => {
-  return <div>Button component</div>;
+type TButtonProps = {
+  children: ReactNode;
+};
+
+const Button: FC<TButtonProps> = ({ children }): ReactElement => {
+  return <button>{children}</button>;
 };
 
 export default Button;
