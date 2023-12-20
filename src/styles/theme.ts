@@ -10,13 +10,6 @@ type TIMacGradient = {
   pink: string;
   orange: string;
 };
-type TAppleIconFill = {
-  yellow: string;
-  green: string;
-  blue: string;
-  pink: string;
-  orange: string;
-};
 
 type TColor = {
   yellow: TThemeColor;
@@ -29,7 +22,6 @@ type TColor = {
   greenPrice: string;
   background: string;
   iMacGradient: TIMacGradient;
-  appleIconFill: TAppleIconFill;
 };
 
 export type TTheme = {
@@ -68,13 +60,6 @@ export const theme: TTheme = {
       blue: "linear-gradient(180deg, #314B6E 0%, #1F385A 100%)",
       pink: "linear-gradient(180deg, #B03F3E 0%, #982A27 100%)",
       orange: "linear-gradient(180deg, #E17650 0%, #CA5B38 100%)",
-    },
-    appleIconFill: {
-      yellow: "linear-gradient(180deg, #FBE9BA 0%, #E7C885 100%)",
-      green: "string",
-      blue: "string",
-      pink: "string",
-      orange: "",
     },
   },
 };

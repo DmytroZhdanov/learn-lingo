@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { TStylesProps } from "shared.types";
-import sprite from "../../../assets/sprite/sprite.svg";
 
 export const ContainerDiv = styled.div<TStylesProps>`
   position: relative;
@@ -38,11 +37,4 @@ export const IMacDiv = styled.div<TStylesProps>`
 
     fill: url(#yellow) ${({ theme }) => theme.color.yellow.light};
   }
-`;
-
-export const IconFillDiv = styled.div<TStylesProps>`
-  width: 48px;
-  height: 56px;
-
-  background-image: ${({ theme }) => theme.color.appleIconFill.yellow};
 `;
