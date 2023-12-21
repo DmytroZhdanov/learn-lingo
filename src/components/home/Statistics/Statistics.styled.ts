@@ -5,6 +5,7 @@ export const ListUl = styled.ul<TStylesProps>`
   display: flex;
   justify-content: space-evenly;
 
+  width: 100%;
   padding: 40px 0;
 
   border-radius: 30px;
