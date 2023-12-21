@@ -34,8 +34,8 @@ const HeroRight: FC = (): ReactElement => {
             y2="56.0534"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#FBE9BA" />
-            <stop offset="1" stop-color="#E7C885" />
+            <stop stopColor="#FBE9BA" />
+            <stop offset="1" stopColor="#E7C885" />
           </linearGradient>
         </svg>
       </IMacDiv>
