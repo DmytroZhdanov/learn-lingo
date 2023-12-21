@@ -15,7 +15,9 @@ const HeroLeft: FC = (): ReactElement => {
         proficiency to new heights by connecting with highly qualified and experienced tutors.
       </TextP>
 
-      <Button padding="16px 88px">Get started</Button>
+      <Button type="button" padding="16px 88px">
+        Get started
+      </Button>
     </ContainerDiv>
   );
 };

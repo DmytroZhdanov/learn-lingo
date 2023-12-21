@@ -1,10 +1,12 @@
-import Button from "components/common/Button";
-import Icon from "components/common/Icon";
 import { FC, ReactElement } from "react";
-import LanguageLevel from "../LanguageLevel";
-import Review from "../Review";
 
-type TReview = {
+import Button from "components/common/Button";
+import LanguageLevels from "../LanguageLevels";
+import Reviews from "../Reviews";
+import TeacherInfoPanel from "../TeacherInfoPanel";
+import TeacherStatsPanel from "../TeacherStatsPanel";
+
+export type TReview = {
   reviewer_name: string;
   reviewer_rating: number;
   comment: string;
@@ -38,55 +40,29 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
             {teacher.name} {teacher.surname}
           </h2>
 
-          <p>
-            <Icon iconId="book" />
-            Lessons online
-          </p>
-
-          <p>Lessons done: {teacher.lessons_done}</p>
-
-          <p>
-            <Icon iconId="rating" />
-            Rating: {teacher.rating}
-          </p>
-
-          <p>Price / 1 hour: {teacher.price_per_hour}$</p>
+          <TeacherStatsPanel
+            lessons_done={teacher.lessons_done}
+            rating={teacher.rating}
+            price_per_hour={teacher.price_per_hour}
+          />
         </div>
 
-        <div>
-          <p>
-            <span>Speaks: </span>
-            <span>{teacher.languages.join(", ")}</span>
-          </p>
-
-          <p>
-            <span>Lesson Info: </span>
-            <span>{teacher.lesson_info}</span>
-          </p>
-
-          <p>
-            <span>Conditions: </span>
-            <span>{teacher.conditions.join(" ")}</span>
-          </p>
-        </div>
+        <TeacherInfoPanel
+          languages={teacher.languages}
+          lesson_info={teacher.lesson_info}
+          conditions={teacher.conditions}
+        />
 
         <button type="button">Read more</button>
-
         <p>{teacher.experience}</p>
 
-        <ul>
-          {teacher.reviews.map(
-            (review: TReview): ReactElement => (
-              <Review />
-            )
-          )}
-        </ul>
+        <Reviews reviews={teacher.reviews} />
 
-        <ul>
-          <LanguageLevel content={"A1 Beginner"} selected={false} />
-        </ul>
+        <LanguageLevels levels={teacher.levels} />
 
-        <Button padding="16px 48px">Book trial lesson</Button>
+        <Button type="button" padding="16px 48px">
+          Book trial lesson
+        </Button>
       </div>
     </li>
   );

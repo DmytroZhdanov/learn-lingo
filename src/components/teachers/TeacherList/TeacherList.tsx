@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 import TeacherCard from "../TeacherCard";
 
-import teachers from "../../../../teachers.json";
+import teachers from "../../../assets/teachers.json";
 
 const TeacherList: FC = (): ReactElement => {
   return (
