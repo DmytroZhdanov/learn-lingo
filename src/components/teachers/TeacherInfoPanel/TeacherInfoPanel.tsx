@@ -1,4 +1,5 @@
 import { FC, ReactElement } from "react";
+import { InfoListDl, WrapperDiv, TermDt, LanguagesDd } from "./index";
 
 type TTeacherInfoPanelProps = {
   languages: string[];
@@ -12,22 +13,22 @@ const TeacherInfoPanel: FC<TTeacherInfoPanelProps> = ({
   conditions,
 }): ReactElement => {
   return (
-    <div>
-      <p>
-        <span>Speaks: </span>
-        <span>{languages.join(", ")}</span>
-      </p>
+    <InfoListDl>
+      <WrapperDiv>
+        <TermDt>Speaks</TermDt>
+        <LanguagesDd>{languages.join(", ")}</LanguagesDd>
+      </WrapperDiv>
 
-      <p>
-        <span>Lesson Info: </span>
-        <span>{lesson_info}</span>
-      </p>
+      <WrapperDiv>
+        <TermDt>Lesson Info</TermDt>
+        <dd>{lesson_info}</dd>
+      </WrapperDiv>
 
-      <p>
-        <span>Conditions: </span>
-        <span>{conditions.join(" ")}</span>
-      </p>
-    </div>
+      <WrapperDiv>
+        <TermDt>Conditions</TermDt>
+        <dd>{conditions.join(" ")}</dd>
+      </WrapperDiv>
+    </InfoListDl>
   );
 };
 
