@@ -1,10 +1,22 @@
 import { FC, ReactElement } from "react";
 
+import Icon from "components/common/Icon";
 import Button from "components/common/Button";
 import LanguageLevels from "../LanguageLevels";
 import Reviews from "../Reviews";
 import TeacherInfoPanel from "../TeacherInfoPanel";
 import TeacherStatsPanel from "../TeacherStatsPanel";
+import {
+  CardLi,
+  FavoriteButton,
+  ImgWrapperDiv,
+  AvatarImg,
+  ContentDiv,
+  StatsWrapperDiv,
+  NameH2,
+  ReadMoreButton,
+  ExperienceP,
+} from "./index";
 
 export type TReview = {
   reviewer_name: string;
@@ -31,21 +43,28 @@ type TTeacherCardProps = {
 
 const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
   return (
-    <li>
-      <img src={teacher.avatar_url} alt="Teacher's Avatar" />
+    <CardLi>
+      <FavoriteButton type="button">
+        <Icon iconId="favorite" />
+      </FavoriteButton>
 
-      <div>
-        <div>
-          <h2>
+      <ImgWrapperDiv>
+        <AvatarImg src={teacher.avatar_url} alt="Teacher's Avatar" />
+        <Icon iconId="online" />
+      </ImgWrapperDiv>
+
+      <ContentDiv>
+        <StatsWrapperDiv>
+          <NameH2>
             {teacher.name} {teacher.surname}
-          </h2>
+          </NameH2>
 
           <TeacherStatsPanel
             lessons_done={teacher.lessons_done}
             rating={teacher.rating}
             price_per_hour={teacher.price_per_hour}
           />
-        </div>
+        </StatsWrapperDiv>
 
         <TeacherInfoPanel
           languages={teacher.languages}
@@ -53,8 +72,8 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
           conditions={teacher.conditions}
         />
 
-        <button type="button">Read more</button>
-        <p>{teacher.experience}</p>
+        <ReadMoreButton type="button">Read more</ReadMoreButton>
+        <ExperienceP>{teacher.experience}</ExperienceP>
 
         <Reviews reviews={teacher.reviews} />
 
@@ -63,8 +82,8 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
         <Button type="button" padding="16px 48px">
           Book trial lesson
         </Button>
-      </div>
-    </li>
+      </ContentDiv>
+    </CardLi>
   );
 };
 

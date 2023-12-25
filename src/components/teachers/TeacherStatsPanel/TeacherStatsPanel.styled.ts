@@ -4,6 +4,7 @@ import { TStylesProps } from "shared.types";
 export const ContainerDiv = styled.div<TStylesProps>`
   display: flex;
   gap: 32px;
+  align-self: start;
 
   font-weight: 500;
   line-height: ${24 / 16};
@@ -39,17 +40,4 @@ export const OnlineP = styled.p`
 
 export const PriceSpan = styled.span<TStylesProps>`
   color: ${({ theme }) => theme.color.greenPrice};
-`;
-
-export const FavoriteButton = styled.button<TStylesProps>`
-  margin-left: 32px;
-  background-color: transparent;
-
-  & svg {
-    width: 26px;
-    height: 26px;
-
-    fill: none;
-    stroke: ${({ theme }) => theme.color.black};
-  }
 `;

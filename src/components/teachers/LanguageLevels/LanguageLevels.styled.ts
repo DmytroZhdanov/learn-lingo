@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 import { TStylesProps } from "shared.types";
 
+export const ListUl = styled.ul`
+  display: flex;
+  gap: 8px;
+`;
+
 export const LevelLi = styled.li<TStylesProps & { selected: boolean }>`
   padding: 8px 12px;
 

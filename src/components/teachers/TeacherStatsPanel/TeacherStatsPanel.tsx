@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 
 import Icon from "components/common/Icon";
-import { ContainerDiv, OnlineP, PriceSpan, FavoriteButton } from "./index";
+import { ContainerDiv, OnlineP, PriceSpan } from "./index";
 
 type TTeacherStatsPanelProps = {
   lessons_done: number;
@@ -31,10 +31,6 @@ const TeacherStatsPanel: FC<TTeacherStatsPanelProps> = ({
       <p>
         Price / 1 hour: <PriceSpan>{price_per_hour}$</PriceSpan>
       </p>
-
-      <FavoriteButton type="button">
-        <Icon iconId="favorite" />
-      </FavoriteButton>
     </ContainerDiv>
   );
 };
