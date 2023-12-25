@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react";
 
 import Icon from "components/common/Icon";
+import { ContainerDiv, OnlineP, PriceSpan, FavoriteButton } from "./index";
 
 type TTeacherStatsPanelProps = {
   lessons_done: number;
@@ -14,25 +15,27 @@ const TeacherStatsPanel: FC<TTeacherStatsPanelProps> = ({
   price_per_hour,
 }): ReactElement => {
   return (
-    <div>
-      <p>
+    <ContainerDiv>
+      <OnlineP>
         <Icon iconId="book" />
         Lessons online
-      </p>
+      </OnlineP>
 
       <p>Lessons done: {lessons_done}</p>
 
       <p>
-        <Icon iconId="rating" />
+        <Icon iconId="star" />
         Rating: {rating}
       </p>
 
-      <p>Price / 1 hour: {price_per_hour}$</p>
+      <p>
+        Price / 1 hour: <PriceSpan>{price_per_hour}$</PriceSpan>
+      </p>
 
-      <button type="button">
+      <FavoriteButton type="button">
         <Icon iconId="favorite" />
-      </button>
-    </div>
+      </FavoriteButton>
+    </ContainerDiv>
   );
 };
 
