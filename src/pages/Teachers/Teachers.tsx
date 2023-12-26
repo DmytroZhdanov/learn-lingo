@@ -1,14 +1,14 @@
 import { FC, ReactElement } from "react";
 import Filter from "../../components/teachers/Filter";
 import TeacherList from "../../components/teachers/TeacherList";
+import { ContainerDiv } from "./index";
 
 const Teachers: FC = (): ReactElement => {
   return (
-    <div>
-      Teachers
+    <ContainerDiv>
       <Filter />
       <TeacherList />
-    </div>
+    </ContainerDiv>
   );
 };
 
