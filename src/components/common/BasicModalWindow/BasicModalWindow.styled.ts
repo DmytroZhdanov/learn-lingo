@@ -101,14 +101,4 @@ export const CloseModalButton = styled.button<TStylesProps>`
   &:focus > svg {
     transform: scale(1.2);
   }
-
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    top: 12px;
-    right: 12px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    top: 16px;
-    right: 16px;
-  } */
 `;
