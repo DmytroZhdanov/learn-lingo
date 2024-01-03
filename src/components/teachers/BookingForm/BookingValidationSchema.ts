@@ -1,9 +1,7 @@
 import * as Yup from "yup";
 
 export const BookingValidationSchema = Yup.object({
-  reason: Yup.string()
-    // .min(1, "You have to choose the reason")
-    .required("You have to choose the reason"),
+  reason: Yup.string().required("You have to choose the reason"),
   name: Yup.string().required("Please, enter your name"),
   email: Yup.string()
     .matches(

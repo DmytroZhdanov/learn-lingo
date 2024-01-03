@@ -1,7 +1,14 @@
 import { FC, ReactElement } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import Button from "../Button";
-import { RegistrationValidationSchema } from "./RegistrationValidationSchema";
+import {
+  RegistrationValidationSchema,
+  ContainerDiv,
+  TitleH2,
+  TextP,
+  InputWrapperDiv,
+} from "./index";
 
 type TFormValues = {
   name: string;
@@ -21,13 +28,13 @@ const RegistrationForm: FC = (): ReactElement => {
   };
 
   return (
-    <div>
-      <h2>Registration</h2>
+    <ContainerDiv>
+      <TitleH2>Registration</TitleH2>
 
-      <p>
+      <TextP>
         Thank you for your interest in our platform! In order to register, we need some information.
         Please provide us with the following information
-      </p>
+      </TextP>
 
       <Formik
         initialValues={initialValues}
@@ -36,14 +43,23 @@ const RegistrationForm: FC = (): ReactElement => {
       >
         {({ isValid, dirty }) => (
           <Form>
-            <Field type="text" id="name" name="name" />
-            <ErrorMessage name="name" />
+            <InputWrapperDiv>
+              <Field type="text" id="name" name="name" placeholder="Name" />
 
-            <Field type="email" id="email" name="email" />
-            <ErrorMessage name="email" />
+              <ErrorMessage name="name" />
+            </InputWrapperDiv>
 
-            <Field type="password" id="password" name="password" />
-            <ErrorMessage name="password" />
+            <InputWrapperDiv>
+              <Field type="email" id="email" name="email" placeholder="Email" />
+
+              <ErrorMessage name="email" />
+            </InputWrapperDiv>
+
+            <InputWrapperDiv>
+              <Field type="password" id="password" name="password" placeholder="Password" />
+
+              <ErrorMessage name="password" />
+            </InputWrapperDiv>
 
             <Button padding="16px" type="submit" disabled={!isValid || !dirty}>
               Sign Up
@@ -51,7 +67,7 @@ const RegistrationForm: FC = (): ReactElement => {
           </Form>
         )}
       </Formik>
-    </div>
+    </ContainerDiv>
   );
 };
 
