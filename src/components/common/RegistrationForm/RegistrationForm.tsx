@@ -2,13 +2,8 @@ import { FC, ReactElement } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Button from "../Button";
-import {
-  RegistrationValidationSchema,
-  ContainerDiv,
-  TitleH2,
-  TextP,
-  InputWrapperDiv,
-} from "./index";
+import { RegistrationValidationSchema } from "./index";
+import { ContainerDiv, TitleH2, TextP, InputWrapperDiv, ErrorP } from "../AuthForm.styled";
 
 type TFormValues = {
   name: string;
@@ -46,19 +41,19 @@ const RegistrationForm: FC = (): ReactElement => {
             <InputWrapperDiv>
               <Field type="text" id="name" name="name" placeholder="Name" />
 
-              <ErrorMessage name="name" />
+              <ErrorMessage name="name" component={ErrorP} />
             </InputWrapperDiv>
 
             <InputWrapperDiv>
               <Field type="email" id="email" name="email" placeholder="Email" />
 
-              <ErrorMessage name="email" />
+              <ErrorMessage name="email" component={ErrorP} />
             </InputWrapperDiv>
 
             <InputWrapperDiv>
               <Field type="password" id="password" name="password" placeholder="Password" />
 
-              <ErrorMessage name="password" />
+              <ErrorMessage name="password" component={ErrorP} />
             </InputWrapperDiv>
 
             <Button padding="16px" type="submit" disabled={!isValid || !dirty}>

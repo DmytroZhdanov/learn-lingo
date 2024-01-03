@@ -2,7 +2,8 @@ import { FC, ReactElement } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Button from "../Button";
-import { LogInValidationSchema } from "./LogInValidationSchema";
+import { LogInValidationSchema } from "./index";
+import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../AuthForm.styled";
 
 type TFormValues = {
   email: string;
@@ -20,13 +21,13 @@ const LogInForm: FC = (): ReactElement => {
   };
 
   return (
-    <div>
-      <h2>Log In</h2>
+    <ContainerDiv>
+      <TitleH2>Log In</TitleH2>
 
-      <p>
+      <TextP>
         Welcome back! Please enter your credentials to access your account and continue your search
-        for an teacher.
-      </p>
+        for a teacher.
+      </TextP>
 
       <Formik
         initialValues={initialValues}
@@ -35,11 +36,17 @@ const LogInForm: FC = (): ReactElement => {
       >
         {({ isValid, dirty }) => (
           <Form>
-            <Field type="email" id="email" name="email" />
-            <ErrorMessage name="email" />
+            <InputWrapperDiv>
+              <Field type="email" id="email" name="email" placeholder="Email" />
 
-            <Field type="password" id="password" name="password" />
-            <ErrorMessage name="email" />
+              <ErrorMessage name="email" component={ErrorP} />
+            </InputWrapperDiv>
+
+            <InputWrapperDiv>
+              <Field type="password" id="password" name="password" placeholder="Password" />
+
+              <ErrorMessage name="password" component={ErrorP} />
+            </InputWrapperDiv>
 
             <Button padding="16px" type="submit" disabled={!isValid || !dirty}>
               Log In
@@ -47,7 +54,7 @@ const LogInForm: FC = (): ReactElement => {
           </Form>
         )}
       </Formik>
-    </div>
+    </ContainerDiv>
   );
 };
 

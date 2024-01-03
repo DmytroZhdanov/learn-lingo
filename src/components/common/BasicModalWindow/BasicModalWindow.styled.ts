@@ -77,8 +77,8 @@ export const ModalDiv = styled.div<TStylesProps & { type: string | undefined }>`
 
 export const CloseModalButton = styled.button<TStylesProps>`
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 20px;
+  right: 20px;
   z-index: 100;
 
   display: flex;
@@ -89,8 +89,8 @@ export const CloseModalButton = styled.button<TStylesProps>`
   background-color: transparent;
 
   & > svg {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
 
     stroke: ${({ theme }) => theme.color.black};
 

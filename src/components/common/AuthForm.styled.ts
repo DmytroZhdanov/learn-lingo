@@ -50,3 +50,10 @@ export const InputWrapperDiv = styled.div`
     margin-bottom: 22px;
   }
 `;
+
+export const ErrorP = styled.p`
+  margin-top: 8px;
+  padding-left: 8px;
+
+  color: red;
+`;

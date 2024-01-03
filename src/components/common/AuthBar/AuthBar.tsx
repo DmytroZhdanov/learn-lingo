@@ -13,8 +13,8 @@ enum FORM {
 type TForm = FORM.LOGIN | FORM.REGISTER | null;
 
 const AuthBar: FC = (): ReactElement => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
-  const [form, setForm] = useState<TForm>(FORM.REGISTER);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [form, setForm] = useState<TForm>(null);
 
   const handleLogInClick = (): void => {
     setForm(FORM.LOGIN);
