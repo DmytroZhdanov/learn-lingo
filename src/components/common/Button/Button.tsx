@@ -6,11 +6,17 @@ type TButtonProps = {
   type?: "button" | "submit" | "reset" | undefined;
   padding: string;
   children: ReactNode;
+  disabled?: boolean;
 };
 
-const Button: FC<TButtonProps> = ({ type = "submit", padding, children }): ReactElement => {
+const Button: FC<TButtonProps> = ({
+  type = "submit",
+  padding,
+  children,
+  disabled = false,
+}): ReactElement => {
   return (
-    <StyledBtn type={type} padding={padding}>
+    <StyledBtn type={type} padding={padding} disabled={disabled}>
       {children}
     </StyledBtn>
   );

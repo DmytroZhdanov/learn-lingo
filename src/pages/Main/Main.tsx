@@ -5,7 +5,6 @@ import { BackgroundDiv } from "./index";
 
 const Main: FC = (): ReactElement => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <BackgroundDiv pathname={pathname}>
