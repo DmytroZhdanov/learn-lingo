@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 
 import Icon from "components/common/Icon";
 import Button from "components/common/Button";
@@ -17,6 +17,8 @@ import {
   ReadMoreButton,
   ExperienceP,
 } from "./index";
+import BasicModalWindow from "components/common/BasicModalWindow";
+import BookingForm from "../BookingForm";
 
 export type TReview = {
   reviewer_name: string;
@@ -42,6 +44,12 @@ type TTeacherCardProps = {
 };
 
 const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <CardLi>
       <FavoriteButton type="button">
@@ -79,10 +87,14 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
 
         <LanguageLevels levels={teacher.levels} />
 
-        <Button type="button" padding="16px 48px">
+        <Button type="button" padding="16px 48px" onClick={handleClick}>
           Book trial lesson
         </Button>
       </ContentDiv>
+
+      <BasicModalWindow isShown={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <BookingForm />
+      </BasicModalWindow>
     </CardLi>
   );
 };

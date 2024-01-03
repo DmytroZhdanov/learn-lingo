@@ -3,10 +3,11 @@ import { FC, ReactElement, ReactNode } from "react";
 import { StyledBtn } from "./index";
 
 type TButtonProps = {
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
   padding: string;
   children: ReactNode;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 const Button: FC<TButtonProps> = ({
@@ -14,9 +15,10 @@ const Button: FC<TButtonProps> = ({
   padding,
   children,
   disabled = false,
+  onClick,
 }): ReactElement => {
   return (
-    <StyledBtn type={type} padding={padding} disabled={disabled}>
+    <StyledBtn type={type} padding={padding} disabled={disabled} onClick={onClick}>
       {children}
     </StyledBtn>
   );

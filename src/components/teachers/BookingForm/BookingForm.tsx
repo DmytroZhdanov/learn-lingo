@@ -1,7 +1,28 @@
-import Button from "components/common/Button";
 import { FC, ReactElement } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+
+import Button from "components/common/Button";
+import { REASON, BookingValidationSchema } from "./index";
+
+type TFormValues = {
+  reason: REASON.ABROAD | REASON.BUSINESS | REASON.CULTURE | REASON.EXAMS | REASON.KIDS | null;
+  name: string;
+  email: string;
+  tel: string;
+};
 
 const BookingForm: FC = (): ReactElement => {
+  const initialValues: TFormValues = {
+    reason: null,
+    name: "",
+    email: "",
+    tel: "",
+  };
+
+  const handleSubmit = (values: TFormValues) => {
+    console.log(values);
+  };
+
   return (
     <div>
       <h2>Book trial lesson</h2>
@@ -13,34 +34,48 @@ const BookingForm: FC = (): ReactElement => {
 
       <div></div>
 
-      <form>
-        <fieldset>
-          <legend>What is your main reason for learning English?</legend>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={BookingValidationSchema}
+      >
+        {({ isValid, dirty }) => (
+          <Form>
+            <fieldset>
+              <legend>What is your main reason for learning English?</legend>
 
-          <input type="checkbox" id="business" name="business" />
-          <label htmlFor="business">Career and business</label>
+              <Field type="radio" name="reason" id="business" value="business" />
+              <label htmlFor="business">Career and business</label>
 
-          <input type="checkbox" id="kids" name="kids" />
-          <label htmlFor="kids">Lesson for kids</label>
+              <Field type="radio" name="reason" id="kids" value="kids" />
+              <label htmlFor="kids">Lesson for kids</label>
 
-          <input type="checkbox" id="abroad" name="abroad" />
-          <label htmlFor="abroad">Living abroad</label>
+              <Field type="radio" name="reason" id="abroad" value="abroad" />
+              <label htmlFor="abroad">Living abroad</label>
 
-          <input type="checkbox" id="exams" name="exams" />
-          <label htmlFor="exams">Exams and coursework</label>
+              <Field type="radio" name="reason" id="exams" value="exams" />
+              <label htmlFor="exams">Exams and coursework</label>
 
-          <input type="checkbox" id="culture" name="culture" />
-          <label htmlFor="culture">Culture, travel or hobby</label>
-        </fieldset>
+              <Field type="radio" name="reason" id="culture" value="culture" />
+              <label htmlFor="culture">Culture, travel or hobby</label>
+            </fieldset>
+            <ErrorMessage name="reason" />
 
-        <input type="text" />
+            <Field type="text" id="name" name="name" />
+            <ErrorMessage name="name" />
 
-        <input type="email" />
+            <Field type="email" id="email" name="email" />
+            <ErrorMessage name="email" />
 
-        <input type="tel" />
+            <Field type="tel" id="tel" name="tel" />
+            <ErrorMessage name="tel" />
 
-        <Button padding="16px">Book</Button>
-      </form>
+            <Button type="submit" padding="16px" disabled={!isValid || !dirty}>
+              Book
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
