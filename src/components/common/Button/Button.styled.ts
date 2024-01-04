@@ -12,4 +12,6 @@ export const StyledBtn = styled.button<TStylesProps & { padding: string; disable
   border-radius: 12px;
   background-color: ${({ theme, disabled }) =>
     disabled ? theme.color.yellow.light : theme.color.yellow.main};
+
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;

@@ -45,7 +45,7 @@ export const ModalDiv = styled.div<TStylesProps & { type: string | undefined }>`
 
   background-color: #ffffff;
   border: ${({ type }) => (type === "error" ? "2px solid red" : "none")};
-  border-radius: 12px;
+  border-radius: 30px;
 
   overflow-y: auto;
 

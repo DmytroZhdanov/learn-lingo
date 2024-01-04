@@ -9,5 +9,5 @@ export const BookingValidationSchema = Yup.object({
       "Email address is not valid"
     )
     .required("Please, enter your email"),
-  tel: Yup.number().required(),
+  tel: Yup.number().required("Please, enter your phone number"),
 });

@@ -93,7 +93,10 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
       </ContentDiv>
 
       <BasicModalWindow isShown={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <BookingForm />
+        <BookingForm
+          teacherName={`${teacher.name} ${teacher.surname}`}
+          teacherAvatar={teacher.avatar_url}
+        />
       </BasicModalWindow>
     </CardLi>
   );

@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Button from "../Button";
 import { LogInValidationSchema } from "./index";
-import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../AuthForm.styled";
+import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../Form.styled";
 
 type TFormValues = {
   email: string;
