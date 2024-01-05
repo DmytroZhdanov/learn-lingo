@@ -6,7 +6,6 @@ export const ContainerDiv = styled.div`
   gap: 24px;
 
   width: calc(100vw - 40px);
-  /* padding: 20px 20px 32px; */
   padding: 20px 0 32px;
   margin: 0 auto;
 
