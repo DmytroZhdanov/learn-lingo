@@ -4,6 +4,8 @@ import { TStylesProps } from "shared.types";
 export const ListUl = styled.ul<TStylesProps>`
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 28px;
 
   width: 100%;
   padding: 40px 0;

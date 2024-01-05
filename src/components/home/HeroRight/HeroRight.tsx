@@ -9,7 +9,7 @@ import {
   personWebp2x,
   personWebp3x,
 } from "../../../utils/person";
-import { ContainerDiv, IMacDiv } from "./index";
+import { ContainerDiv, Img, IMacDiv } from "./index";
 
 const HeroRight: FC = (): ReactElement => {
   return (
@@ -20,7 +20,7 @@ const HeroRight: FC = (): ReactElement => {
           type="image/webp"
         />
         <source srcSet={`${personPng} 1x, ${personPng2x} 2x, ${personPng3x} 3x`} type="image/png" />
-        <img src={personPng} alt="User emoji" />
+        <Img src={personPng} alt="User emoji" />
       </picture>
 
       <IMacDiv>

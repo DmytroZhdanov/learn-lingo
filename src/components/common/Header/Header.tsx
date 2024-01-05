@@ -1,16 +1,40 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 
 import AuthBar from "../AuthBar";
+import Icon from "../Icon";
 import Logo from "../Logo";
 import NavBar from "../NavBar";
-import { HeaderStyled } from "./index";
+import { HeaderStyled, MenuButton } from "./index";
 
 const Header: FC = (): ReactElement => {
+  const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 1120);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleResize = () => {
+    setIsDesktop(window.innerWidth >= 1120);
+  };
+
   return (
     <HeaderStyled>
       <Logo />
-      <NavBar />
-      <AuthBar />
+
+      {isDesktop ? (
+        <>
+          <NavBar />
+          <AuthBar />
+        </>
+      ) : (
+        <MenuButton type="button">
+          <Icon iconId="burger" />
+        </MenuButton>
+      )}
     </HeaderStyled>
   );
 };
