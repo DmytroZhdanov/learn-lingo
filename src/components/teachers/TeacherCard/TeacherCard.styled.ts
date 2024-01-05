@@ -4,12 +4,15 @@ import { TStylesProps } from "shared.types";
 export const CardLi = styled.li`
   position: relative;
   display: flex;
-  gap: 48px;
+  gap: 24px;
 
-  width: 1184px;
   padding: 24px;
   border-radius: 24px;
   background-color: #ffffff;
+
+  @media screen and (min-width: 425px) {
+    gap: 48px;
+  }
 `;
 
 export const FavoriteButton = styled.button<TStylesProps>`
@@ -18,6 +21,7 @@ export const FavoriteButton = styled.button<TStylesProps>`
   right: 24px;
 
   margin-left: 32px;
+  padding: 0;
   background-color: transparent;
 
   & svg {
@@ -30,33 +34,50 @@ export const FavoriteButton = styled.button<TStylesProps>`
 `;
 
 export const ImgWrapperDiv = styled.div<TStylesProps>`
-  position: relative;
+  position: sticky;
+  top: 24px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
 
   border-radius: 50%;
   border: 3px solid ${({ theme }) => theme.color.yellow.light};
 
   & > svg {
     position: absolute;
-    top: 16px;
-    right: 20px;
 
-    width: 12px;
-    height: 12px;
+    top: 8px;
+    right: 10px;
+
+    width: 6px;
+    height: 6px;
+  }
+
+  @media screen and (min-width: 425px) {
+    width: 120px;
+    height: 120px;
+
+    & > svg {
+      top: 16px;
+      right: 20px;
+    }
   }
 `;
 
 export const AvatarImg = styled.img`
-  width: 96px;
-  height: 96px;
+  width: 48px;
+  height: 48px;
 
   border-radius: 50%;
+
+  @media screen and (min-width: 425px) {
+    width: 96px;
+    height: 96px;
+  }
 `;
 
 export const ContentDiv = styled.div`
@@ -65,23 +86,36 @@ export const ContentDiv = styled.div`
   align-items: start;
   gap: 32px;
 
-  width: 968px;
+  width: calc(100% - 84px);
+
+  @media screen and (min-width: 425px) {
+    width: calc(100% - 168px);
+  }
 `;
 
 export const StatsWrapperDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
 
-  width: 100%;
-  height: 56px;
-  padding-right: 90px;
+    width: 100%;
+    height: 56px;
+
+    padding-right: 90px;
+  }
 `;
 
 export const NameH2 = styled.h2`
   font-weight: 500;
   font-size: 24px;
 
-  align-self: end;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 24px;
+  }
+
+  @media screen and (min-width: 768px) {
+    align-self: end;
+  }
 `;
 
 export const ReadMoreButton = styled.button<TStylesProps>`

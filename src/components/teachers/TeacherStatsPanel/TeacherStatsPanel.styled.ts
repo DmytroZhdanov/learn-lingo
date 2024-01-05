@@ -2,10 +2,6 @@ import styled from "@emotion/styled";
 import { TStylesProps } from "shared.types";
 
 export const ContainerDiv = styled.div<TStylesProps>`
-  display: flex;
-  gap: 32px;
-  align-self: start;
-
   font-weight: 500;
   line-height: ${24 / 16};
 
@@ -22,12 +18,32 @@ export const ContainerDiv = styled.div<TStylesProps>`
     gap: 8px;
   }
 
-  & p:not(:last-of-type)::after {
-    content: "|";
-    position: absolute;
-    right: -18px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 32px;
+    align-self: start;
+    justify-content: flex-end;
 
-    color: rgba(18, 20, 23, 0.2);
+    & p:not(:last-of-type)::after {
+      content: "|";
+      position: absolute;
+      right: -18px;
+
+      color: rgba(18, 20, 23, 0.2);
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    & p:nth-of-type(2)::after {
+      content: "";
+    }
+  }
+
+  @media screen and (min-width: 801px) and (max-width: 1080px) {
+    & p:nth-of-type(3)::after {
+      content: "";
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from "react";
+import { FC, MouseEvent, ReactElement, useState } from "react";
 
 import Icon from "components/common/Icon";
 import Button from "components/common/Button";
@@ -44,10 +44,15 @@ type TTeacherCardProps = {
 };
 
 const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleClick = () => {
-    setIsModalOpen(true);
+  const handleBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (e.target.id === "expand") {
+      setIsExpanded(true);
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   return (
@@ -80,14 +85,20 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
           conditions={teacher.conditions}
         />
 
-        <ReadMoreButton type="button">Read more</ReadMoreButton>
-        <ExperienceP>{teacher.experience}</ExperienceP>
-
-        <Reviews reviews={teacher.reviews} />
+        {isExpanded ? (
+          <>
+            <ExperienceP>{teacher.experience}</ExperienceP>
+            <Reviews reviews={teacher.reviews} />
+          </>
+        ) : (
+          <ReadMoreButton id="expand" type="button" onClick={handleBtnClick}>
+            Read more
+          </ReadMoreButton>
+        )}
 
         <LanguageLevels levels={teacher.levels} />
 
-        <Button type="button" padding="16px 48px" onClick={handleClick}>
+        <Button type="button" padding="16px 48px" onClick={handleBtnClick}>
           Book trial lesson
         </Button>
       </ContentDiv>

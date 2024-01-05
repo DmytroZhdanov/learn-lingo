@@ -3,6 +3,7 @@ import { TStylesProps } from "shared.types";
 
 export const ListUl = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 `;
 

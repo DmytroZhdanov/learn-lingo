@@ -11,8 +11,10 @@ export const InfoListDl = styled.dl`
 `;
 
 export const WrapperDiv = styled.div`
-  display: flex;
-  gap: 4px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 4px;
+  }
 `;
 
 export const TermDt = styled.dt<TStylesProps>`

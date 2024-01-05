@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode } from "react";
+import { FC, MouseEvent, ReactElement, ReactNode } from "react";
 
 import { StyledBtn } from "./index";
 
@@ -7,7 +7,7 @@ type TButtonProps = {
   padding: string;
   children: ReactNode;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button: FC<TButtonProps> = ({
