@@ -47,6 +47,7 @@ export const ModalDiv = styled.div<TStylesProps & { type: string | undefined }>`
   border: ${({ type }) => (type === "error" ? "2px solid red" : "none")};
   border-radius: 30px;
 
+  overflow-x: hidden;
   overflow-y: auto;
 
   &.modal-wrapper-enter {
@@ -89,12 +90,17 @@ export const CloseModalButton = styled.button<TStylesProps>`
   background-color: transparent;
 
   & > svg {
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
 
     stroke: ${({ theme }) => theme.color.black};
 
     transition: transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+
+    @media screen and (min-width: 768px) {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &:hover > svg,

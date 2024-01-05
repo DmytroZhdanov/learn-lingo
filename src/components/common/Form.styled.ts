@@ -3,7 +3,7 @@ import { TStylesProps } from "shared.types";
 
 // Common elements
 export const ContainerDiv = styled.div<TStylesProps>`
-  padding: 64px;
+  padding: 20px;
 
   & > form {
     display: flex;
@@ -13,8 +13,10 @@ export const ContainerDiv = styled.div<TStylesProps>`
     & input {
       display: block;
       width: 100%;
+      /* width: calc(100% - 40px); */
       padding: 16px 18px;
 
+      font-size: clamp(12px, 1.15vw, 16px);
       line-height: ${22 / 16};
 
       border-radius: 12px;
@@ -25,12 +27,28 @@ export const ContainerDiv = styled.div<TStylesProps>`
       }
     }
   }
+
+  @media screen and (max-width: 374px) {
+    max-width: calc(100vw - 40px);
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 32px;
+    max-width: calc(100vw - 64px);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 600px;
+
+    padding: 64px;
+  }
 `;
 
 export const TitleH2 = styled.h2`
   margin-bottom: 20px;
 
-  font-size: 40px;
+  /* font-size: 40px; */
+  font-size: clamp(20px, 3vw, 40px);
   font-weight: 500;
   line-height: ${48 / 40};
   letter-spacing: -0.8px;
@@ -39,6 +57,7 @@ export const TitleH2 = styled.h2`
 export const TextP = styled.p<{ booking?: boolean }>`
   margin-bottom: ${({ booking }) => (booking ? "20px" : "40px")};
 
+  font-size: clamp(12px, 1.15vw, 16px);
   color: rgba(18, 20, 23, 0.8);
   line-height: ${22 / 16};
 `;
@@ -46,6 +65,7 @@ export const TextP = styled.p<{ booking?: boolean }>`
 export const InputWrapperDiv = styled.div<{ booking?: boolean }>`
   position: relative;
   width: ${({ booking }) => (booking ? "472px" : "440px")};
+  max-width: calc(100vw - 80px);
 
   &:first-of-type {
     margin-top: 22px;
@@ -54,12 +74,17 @@ export const InputWrapperDiv = styled.div<{ booking?: boolean }>`
   &:last-of-type {
     margin-bottom: 22px;
   }
+
+  @media screen and (min-width: 375px) {
+    max-width: calc(100vw - 128px);
+  }
 `;
 
 export const ErrorP = styled.p`
   margin-top: 8px;
   padding-left: 8px;
 
+  font-size: clamp(12px, 1.15vw, 16px);
   color: red;
 `;
 // /Common elements
@@ -97,6 +122,8 @@ export const Fieldset = styled.fieldset<TStylesProps>`
   flex-direction: column;
   gap: 16px;
 
+  /* width: 100%; */
+
   & > input {
     position: absolute;
     width: 1px;
@@ -118,7 +145,8 @@ export const Fieldset = styled.fieldset<TStylesProps>`
 export const Legend = styled.legend`
   margin-bottom: 20px;
 
-  font-size: 24px;
+  /* font-size: 24px; */
+  font-size: clamp(12px, 1.7vw, 24px);
   font-weight: 500;
   line-height: ${32 / 24};
 `;
@@ -126,6 +154,7 @@ export const Legend = styled.legend`
 export const RadioLabel = styled.label<TStylesProps>`
   position: relative;
 
+  font-size: clamp(12px, 1.15vw, 16px);
   line-height: ${22 / 16};
   padding-left: 32px;
 
