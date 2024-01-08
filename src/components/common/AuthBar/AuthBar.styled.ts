@@ -3,6 +3,7 @@ import { TStylesProps } from "shared.types";
 
 export const List = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 `;
 
@@ -12,6 +13,7 @@ export const Button = styled.button<TStylesProps>`
   gap: 8px;
 
   padding: 14px 0;
+  font-size: clamp(12px, 2vw, 16px);
   font-weight: 700;
   line-height: ${20 / 16};
   color: ${({ theme }) => theme.color.black};
@@ -25,8 +27,13 @@ export const Button = styled.button<TStylesProps>`
 `;
 
 export const RegButton = styled(Button)`
-  padding: 14px 40px;
+  padding: 14px 20px;
   border-radius: 12px;
   color: #ffffff;
   background-color: ${({ theme }) => theme.color.black};
+
+  @media screen and (min-width: 375px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 `;

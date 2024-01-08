@@ -42,7 +42,7 @@ const BookingForm: FC<TBookingFormProps> = ({ teacherName, teacherAvatar }): Rea
   };
 
   return (
-    <ContainerDiv>
+    <ContainerDiv booking={true}>
       <TitleH2>Book trial lesson</TitleH2>
 
       <TextP booking={true}>

@@ -3,11 +3,13 @@ import { FC, ReactElement, useEffect, useState } from "react";
 import AuthBar from "../AuthBar";
 import Icon from "../Icon";
 import Logo from "../Logo";
+import MobileMenu from "../MobileMenu";
 import NavBar from "../NavBar";
 import { HeaderStyled, MenuButton } from "./index";
 
 const Header: FC = (): ReactElement => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 1120);
+  const [isMobMenuOpen, setIsMobMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -21,6 +23,10 @@ const Header: FC = (): ReactElement => {
     setIsDesktop(window.innerWidth >= 1120);
   };
 
+  const handleBurgerClick = () => {
+    setIsMobMenuOpen(true);
+  };
+
   return (
     <HeaderStyled>
       <Logo />
@@ -31,10 +37,12 @@ const Header: FC = (): ReactElement => {
           <AuthBar />
         </>
       ) : (
-        <MenuButton type="button">
+        <MenuButton type="button" onClick={handleBurgerClick}>
           <Icon iconId="burger" />
         </MenuButton>
       )}
+
+      <MobileMenu isOpened={isMobMenuOpen} onClose={() => setIsMobMenuOpen(false)} />
     </HeaderStyled>
   );
 };

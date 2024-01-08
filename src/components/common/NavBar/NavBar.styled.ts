@@ -21,4 +21,9 @@ export const Nav = styled.nav<TStylesProps>`
       background-color: ${({ theme }) => theme.color.yellow.main};
     }
   }
+
+  @media screen and (max-width: 1119px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;

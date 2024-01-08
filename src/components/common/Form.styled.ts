@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { TStylesProps } from "shared.types";
 
 // Common elements
-export const ContainerDiv = styled.div<TStylesProps>`
+export const ContainerDiv = styled.div<TStylesProps & { booking?: boolean }>`
   padding: 20px;
 
   & > form {
@@ -32,13 +32,13 @@ export const ContainerDiv = styled.div<TStylesProps>`
     max-width: calc(100vw - 40px);
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 375px) and (max-width: 767px) {
     padding: 32px;
     max-width: calc(100vw - 64px);
   }
 
   @media screen and (min-width: 768px) {
-    width: 600px;
+    width: ${({ booking }) => (booking ? "600px" : "566px")};
 
     padding: 64px;
   }
