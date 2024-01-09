@@ -19,28 +19,10 @@ import {
 } from "./index";
 import BasicModalWindow from "components/common/BasicModalWindow";
 import BookingForm from "../BookingForm";
-
-export type TReview = {
-  reviewer_name: string;
-  reviewer_rating: number;
-  comment: string;
-};
+import { TTeacher } from "shared.types";
 
 type TTeacherCardProps = {
-  teacher: {
-    name: string;
-    surname: string;
-    languages: string[];
-    levels: string[];
-    rating: number;
-    reviews: TReview[];
-    price_per_hour: number;
-    lessons_done: number;
-    avatar_url: string;
-    lesson_info: string;
-    conditions: string[];
-    experience: string;
-  };
+  teacher: TTeacher;
 };
 
 const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {

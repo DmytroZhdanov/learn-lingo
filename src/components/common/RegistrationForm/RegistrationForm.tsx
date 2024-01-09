@@ -1,25 +1,47 @@
 import { FC, ReactElement } from "react";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Button from "../Button";
 import { RegistrationValidationSchema } from "./index";
 import { ContainerDiv, TitleH2, TextP, InputWrapperDiv, ErrorP } from "../Form.styled";
 
+import { useSignUpMutation } from "../../../redux/api";
+import { setCredentials } from "../../../redux/auth/authSlice";
+
 type TFormValues = {
-  name: string;
+  displayName: string;
   email: string;
   password: string;
 };
 
-const RegistrationForm: FC = (): ReactElement => {
+type TRegistrationFormProps = {
+  onMobMenuClose?: () => void;
+  onModalClose: () => void;
+};
+
+const RegistrationForm: FC<TRegistrationFormProps> = ({
+  onMobMenuClose,
+  onModalClose,
+}): ReactElement => {
+  const dispatch = useDispatch();
+  const [register, status] = useSignUpMutation();
+
   const initialValues: TFormValues = {
-    name: "",
+    displayName: "",
     email: "",
     password: "",
   };
 
-  const handleSubmit = (values: TFormValues): void => {
-    console.log(values);
+  const handleSubmit = async (values: TFormValues): Promise<void> => {
+    const { displayName, email, refreshToken, idToken } = await register(values).unwrap();
+    dispatch(setCredentials({ user: { displayName, email }, refreshToken, idToken }));
+
+    onModalClose();
+
+    if (onMobMenuClose) {
+      onMobMenuClose();
+    }
   };
 
   return (
@@ -39,9 +61,9 @@ const RegistrationForm: FC = (): ReactElement => {
         {({ isValid, dirty }) => (
           <Form>
             <InputWrapperDiv>
-              <Field type="text" id="name" name="name" placeholder="Name" />
+              <Field type="text" id="displayName" name="displayName" placeholder="Name" />
 
-              <ErrorMessage name="name" component={ErrorP} />
+              <ErrorMessage name="displayName" component={ErrorP} />
             </InputWrapperDiv>
 
             <InputWrapperDiv>

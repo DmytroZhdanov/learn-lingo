@@ -1,6 +1,6 @@
 import Icon from "components/common/Icon";
 import { FC, ReactElement } from "react";
-import { TReview } from "../TeacherCard/TeacherCard";
+import { TReview } from "shared.types";
 import { ListUl, NameH3, RatingP } from "./index";
 
 type TReviewsProps = {

@@ -1,23 +1,42 @@
 import { FC, ReactElement } from "react";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Button from "../Button";
 import { LogInValidationSchema } from "./index";
 import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../Form.styled";
 
+import { useSignInMutation } from "../../../redux/api";
+import { setCredentials } from "../../../redux/auth/authSlice";
+
 type TFormValues = {
   email: string;
   password: string;
 };
 
-const LogInForm: FC = (): ReactElement => {
+type TLogInFormProps = {
+  onMobMenuClose?: () => void;
+  onModalClose: () => void;
+};
+
+const LogInForm: FC<TLogInFormProps> = ({ onMobMenuClose, onModalClose }): ReactElement => {
+  const dispatch = useDispatch();
+  const [login, status] = useSignInMutation();
+
   const initialValues: TFormValues = {
     email: "",
     password: "",
   };
 
-  const handleSubmit = (values: TFormValues): void => {
-    console.log(values);
+  const handleSubmit = async (values: TFormValues): Promise<void> => {
+    const { displayName, email, refreshToken, idToken } = await login(values).unwrap();
+    dispatch(setCredentials({ user: { displayName, email }, refreshToken, idToken }));
+
+    onModalClose();
+
+    if (onMobMenuClose) {
+      onMobMenuClose();
+    }
   };
 
   return (

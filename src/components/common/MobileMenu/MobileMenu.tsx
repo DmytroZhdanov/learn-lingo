@@ -29,9 +29,9 @@ const MobileMenu: FC<TMobMenuProps> = ({ onClose, isOpened }): ReactElement => {
           <Icon iconId="close" />
         </CloseButton>
 
-        <NavBar onClose={onClose} />
+        <NavBar onMobMenuClose={onClose} />
 
-        <AuthBar />
+        <AuthBar onMobMenuClose={onClose} />
       </MenuDiv>
     </CSSTransition>,
     mobileMenuRoot

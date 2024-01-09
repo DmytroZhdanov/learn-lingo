@@ -1,18 +1,23 @@
 import { FC, ReactElement } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { ROUTER } from "../../../App";
 import { Nav } from "./index";
 
+import { ROUTER } from "../../../App";
+import { selectRefreshToken } from "../../../redux/auth/selectors";
+
 type TNavBarProps = {
-  onClose?: () => void;
+  onMobMenuClose?: () => void;
 };
 
-const NavBar: FC<TNavBarProps> = ({ onClose }): ReactElement => {
-  const handleClick = () => {
-    if (!onClose) return;
+const NavBar: FC<TNavBarProps> = ({ onMobMenuClose }): ReactElement => {
+  const refreshToken = useSelector(selectRefreshToken);
 
-    onClose();
+  const handleClick = () => {
+    if (!onMobMenuClose) return;
+
+    onMobMenuClose();
   };
 
   return (
@@ -33,13 +38,15 @@ const NavBar: FC<TNavBarProps> = ({ onClose }): ReactElement => {
         {ROUTER.TEACHERS}
       </NavLink>
 
-      <NavLink
-        to={ROUTER.FAVORITES}
-        className={({ isActive }) => (isActive ? "active" : "")}
-        onClick={handleClick}
-      >
-        {ROUTER.FAVORITES}
-      </NavLink>
+      {refreshToken && (
+        <NavLink
+          to={ROUTER.FAVORITES}
+          className={({ isActive }) => (isActive ? "active" : "")}
+          onClick={handleClick}
+        >
+          {ROUTER.FAVORITES}
+        </NavLink>
+      )}
     </Nav>
   );
 };
