@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Main } from "./pages/Main";
 import PrivateRoute from "./components/PrivateRoute";
 
+import { loader as teachersLoader } from "./pages/Teachers";
+
 import { selectRefreshToken } from "./redux/auth/selectors";
 import { useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
 import { setCredentials } from "./redux/auth/authSlice";
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTER.TEACHERS,
+        loader: teachersLoader,
         async lazy() {
           let { Teachers } = await import("./pages/Teachers");
           return { Component: Teachers };

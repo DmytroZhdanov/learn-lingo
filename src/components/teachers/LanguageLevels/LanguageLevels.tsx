@@ -10,7 +10,9 @@ const LanguageLevels: FC<TLanguageLevelProps> = ({ levels }): ReactElement => {
     <ListUl>
       {levels.map(
         (level: string): ReactElement => (
-          <LevelLi selected={true}>#{level}</LevelLi>
+          <LevelLi key={level} selected={true}>
+            #{level}
+          </LevelLi>
         )
       )}
     </ListUl>

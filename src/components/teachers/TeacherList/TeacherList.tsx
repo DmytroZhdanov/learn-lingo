@@ -1,13 +1,24 @@
 import { FC, ReactElement } from "react";
+
 import TeacherCard from "../TeacherCard";
+import { ListUl } from "./index";
 
-import teachers from "../../../assets/teachers.json";
+import { TTeacher } from "shared.types";
 
-const TeacherList: FC = (): ReactElement => {
+type TTeacherListProps = {
+  teachers: TTeacher[];
+};
+
+const TeacherList: FC<TTeacherListProps> = ({ teachers }): ReactElement => {
   return (
-    <ul>
-      <TeacherCard teacher={teachers[0]} />
-    </ul>
+    <ListUl>
+      {teachers &&
+        teachers.map(
+          (teacher: TTeacher): ReactElement => (
+            <TeacherCard key={teacher.avatar_url} teacher={teacher} />
+          )
+        )}
+    </ListUl>
   );
 };
 

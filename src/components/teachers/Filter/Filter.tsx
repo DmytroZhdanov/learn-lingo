@@ -1,14 +1,20 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 import { ContainerDiv, SelectWrapperDiv, Label } from "./index";
 
-type SelectOption = {
+type TFilterProps = {
+  onInputLanguagesChange: (value: string) => void;
+  onInputLevelChange: (value: string) => void;
+  onInputPriceChange: (value: string) => void;
+};
+
+type TSelectOption = {
   value: string | null;
   label: string;
   selected?: boolean;
 };
 
-const languagesOptions: SelectOption[] = [
+const languagesOptions: TSelectOption[] = [
   { value: null, label: "- - Any" },
   { value: "French", label: "French" },
   { value: "English", label: "English" },
@@ -18,7 +24,7 @@ const languagesOptions: SelectOption[] = [
   { value: "Spanish", label: "Spanish" },
 ];
 
-const levelOptions: SelectOption[] = [
+const levelOptions: TSelectOption[] = [
   { value: null, label: "- - Any" },
   { value: "A1 Beginner", label: "A1 Beginner" },
   { value: "A2 Elementary", label: "A2 Elementary" },
@@ -28,7 +34,7 @@ const levelOptions: SelectOption[] = [
   { value: "C2 Proficient", label: "C2 Proficient" },
 ];
 
-const priceOptions: SelectOption[] = [
+const priceOptions: TSelectOption[] = [
   { value: null, label: "- - Any" },
   { value: "10", label: "10" },
   { value: "20", label: "20" },
@@ -38,7 +44,11 @@ const priceOptions: SelectOption[] = [
   { value: "60", label: "60" },
 ];
 
-const Filter: FC = (): ReactElement => {
+const Filter: FC<TFilterProps> = ({
+  onInputLanguagesChange,
+  onInputLevelChange,
+  onInputPriceChange,
+}): ReactElement => {
   return (
     <ContainerDiv>
       <SelectWrapperDiv>
@@ -49,6 +59,10 @@ const Filter: FC = (): ReactElement => {
           options={languagesOptions}
           styles={styles}
           defaultValue={languagesOptions[0]}
+          onChange={(option: TSelectOption | unknown) => {
+            const selectedOption = option as TSelectOption;
+            onInputLanguagesChange(selectedOption.value as string);
+          }}
         />
       </SelectWrapperDiv>
 
@@ -61,6 +75,10 @@ const Filter: FC = (): ReactElement => {
           styles={styles}
           defaultValue={levelOptions[0]}
           isSearchable={false}
+          onChange={(option: TSelectOption | unknown) => {
+            const selectedOption = option as TSelectOption;
+            onInputLevelChange(selectedOption.value as string);
+          }}
         />
       </SelectWrapperDiv>
 
@@ -72,6 +90,10 @@ const Filter: FC = (): ReactElement => {
           options={priceOptions}
           styles={styles}
           defaultValue={priceOptions[0]}
+          onChange={(option: TSelectOption | unknown) => {
+            const selectedOption = option as TSelectOption;
+            onInputPriceChange(selectedOption.value as string);
+          }}
         />
       </SelectWrapperDiv>
     </ContainerDiv>
