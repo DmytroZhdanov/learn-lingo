@@ -1,7 +1,13 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Main } from "./pages/Main";
+import PrivateRoute from "./components/PrivateRoute";
+
+import { selectRefreshToken } from "./redux/auth/selectors";
+import { useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
+import { setCredentials } from "./redux/auth/authSlice";
 
 export const enum ROUTER {
   MAIN = "/",
@@ -44,6 +50,27 @@ const router = createBrowserRouter([
 ]);
 
 const App: FC = (): ReactElement => {
+  const refreshToken = useSelector(selectRefreshToken);
+  const [getIdToken, status] = useGetIdTokenMutation();
+  const [getUserData, userDataStatus] = useGetUserDataMutation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const refresh = async (): Promise<void> => {
+      if (refreshToken) {
+        const { id_token } = await getIdToken(refreshToken).unwrap();
+        const { users } = await getUserData(id_token).unwrap();
+
+        const { displayName, email } = users[0];
+        const user = { displayName, email };
+
+        dispatch(setCredentials({ user, idToken: id_token, refreshToken }));
+      }
+    };
+
+    refresh();
+  }, [refreshToken]);
+
   return <RouterProvider router={router} />;
 };
 

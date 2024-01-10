@@ -74,6 +74,20 @@ export const api = createApi({
         data: { ...credentials, returnSecureToken: true },
       }),
     }),
+    getIdToken: builder.mutation({
+      query: refresh_token => ({
+        url: "/token",
+        method: "POST",
+        data: { grant_type: "refresh_token", refresh_token },
+      }),
+    }),
+    getUserData: builder.mutation({
+      query: idToken => ({
+        url: "/accounts:lookup",
+        method: "POST",
+        data: { idToken },
+      }),
+    }),
     // getAllCars: builder.query<TTeacher[], IQuery>({
     //   query: ({ page = 1, make, language }) => ({
     //     url: `/adverts${language === "uk" ? "-uk" : ""}`,
@@ -84,4 +98,9 @@ export const api = createApi({
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation } = api;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetIdTokenMutation,
+  useGetUserDataMutation,
+} = api;

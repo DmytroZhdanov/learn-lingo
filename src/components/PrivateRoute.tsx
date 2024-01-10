@@ -1,5 +1,7 @@
 import { FC, ReactElement } from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { selectRefreshToken } from "../redux/auth/selectors";
 
 import { ROUTER } from "../App";
 
@@ -12,7 +14,8 @@ const PrivateRoute: FC<TPrivateRouteProps> = ({
   redirectTo = ROUTER.MAIN,
   component: Component,
 }): ReactElement => {
-  const shouldRedirect: boolean = false;
+  const refreshToken = useSelector(selectRefreshToken);
+  const shouldRedirect: boolean = !refreshToken;
 
   return shouldRedirect ? <Navigate to={`../${redirectTo}`} /> : Component;
 };
