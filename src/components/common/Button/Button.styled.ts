@@ -5,7 +5,7 @@ export const StyledBtn = styled.button<TStylesProps & { padding: string; disable
   padding: 12px 24px;
 
   color: ${({ theme }) => theme.color.black};
-  font-size: clamp(12px, 1.5vw, 18px);
+  font-size: clamp(12px, 1.6vw, 18px);
   font-weight: 700;
   line-height: ${28 / 18};
 
@@ -17,5 +17,12 @@ export const StyledBtn = styled.button<TStylesProps & { padding: string; disable
 
   @media screen and (min-width: 768px) {
     padding: ${({ padding }) => padding};
+  }
+
+  transition: transform ${({ theme }) => theme.transition};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
   }
 `;

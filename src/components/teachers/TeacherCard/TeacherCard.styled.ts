@@ -13,6 +13,15 @@ export const CardLi = styled.li`
   @media screen and (min-width: 425px) {
     gap: 48px;
   }
+
+  &.item-wrapper-enter {
+    transform: translateX(-100vw);
+  }
+
+  &.item-wrapper-enter-active {
+    transform: translateX(0);
+    transition: transform 200ms ease-in-out;
+  }
 `;
 
 export const FavoriteButton = styled.button<TStylesProps & { isFavorite: boolean }>`
@@ -31,6 +40,13 @@ export const FavoriteButton = styled.button<TStylesProps & { isFavorite: boolean
     fill: ${({ theme, isFavorite }) => (isFavorite ? theme.color.yellow.main : "none")};
     stroke: ${({ theme, isFavorite }) =>
       isFavorite ? theme.color.yellow.main : theme.color.black};
+  }
+
+  transition: transform ${({ theme }) => theme.transition};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
   }
 `;
 
@@ -128,6 +144,13 @@ export const ReadMoreButton = styled.button<TStylesProps>`
   line-height: ${24 / 16};
   text-decoration-line: underline;
   background-color: transparent;
+
+  transition: transform ${({ theme }) => theme.transition};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 `;
 
 export const ExperienceP = styled.p`

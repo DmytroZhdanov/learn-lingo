@@ -26,6 +26,7 @@ type TColor = {
 
 export type TTheme = {
   color: TColor;
+  transition: string;
 };
 
 export const theme: TTheme = {
@@ -62,4 +63,5 @@ export const theme: TTheme = {
       orange: "linear-gradient(180deg, #E17650 0%, #CA5B38 100%)",
     },
   },
+  transition: "250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)",
 };

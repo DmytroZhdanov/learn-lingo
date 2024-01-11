@@ -27,4 +27,11 @@ export const LoadMoreButton = styled.button<TStylesProps>`
   text-decoration: underline;
 
   background-color: transparent;
+
+  transition: transform ${({ theme }) => theme.transition};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  }
 `;

@@ -1,10 +1,19 @@
 import styled from "@emotion/styled";
 import { TStylesProps } from "shared.types";
 
-export const List = styled.ul`
+export const List = styled.ul<TStylesProps>`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  & > li {
+    transition: transform ${({ theme }) => theme.transition};
+
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+    }
+  }
 `;
 
 export const Button = styled.button<TStylesProps>`

@@ -11,6 +11,8 @@ export const Nav = styled.nav<TStylesProps>`
     padding: 14px 0;
     text-transform: capitalize;
 
+    transition: transform ${({ theme }) => theme.transition};
+
     &.active::after {
       content: "";
       display: block;
@@ -19,6 +21,11 @@ export const Nav = styled.nav<TStylesProps>`
       height: 8px;
       border-radius: 50%;
       background-color: ${({ theme }) => theme.color.yellow.main};
+    }
+
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
     }
   }
 
