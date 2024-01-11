@@ -7,6 +7,7 @@ import TeacherList from "../../components/teachers/TeacherList";
 import { ContainerDiv } from "./index";
 
 import { TTeacher } from "shared.types";
+import DefaultText from "components/common/DefaultText";
 
 export async function loader() {
   const { data }: { data: TTeacher[] } = await axios.get(
@@ -48,7 +49,14 @@ const Teachers: FC = (): ReactElement => {
         onInputPriceChange={setInputPrice}
       />
 
-      <TeacherList teachers={filteredTeachers} />
+      {filteredTeachers.length > 0 ? (
+        <TeacherList teachers={filteredTeachers} />
+      ) : (
+        <DefaultText>
+          Sorry... We couldn't find any teacher matching your query. Try to adjust filter to find
+          one!
+        </DefaultText>
+      )}
     </ContainerDiv>
   );
 };

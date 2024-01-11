@@ -6,13 +6,20 @@ import { ContainerDiv } from "pages/Teachers";
 
 import { TTeacher } from "shared.types";
 import { selectFavorites } from "../../redux/favorite/selectors";
+import DefaultText from "components/common/DefaultText";
 
 const Favorites: FC = (): ReactElement => {
   const favorites: TTeacher[] = useSelector(selectFavorites);
 
   return (
     <ContainerDiv>
-      <TeacherList teachers={favorites} />
+      {favorites.length > 0 ? (
+        <TeacherList teachers={favorites} />
+      ) : (
+        <DefaultText>
+          You don't have a favorite teachers yet... Go to Teachers page to find some!
+        </DefaultText>
+      )}
     </ContainerDiv>
   );
 };
