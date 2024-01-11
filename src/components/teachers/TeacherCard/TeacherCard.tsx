@@ -1,4 +1,5 @@
-import { FC, MouseEvent, ReactElement, useState } from "react";
+import { FC, MouseEvent, ReactElement, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Icon from "components/common/Icon";
 import Button from "components/common/Button";
@@ -19,7 +20,10 @@ import {
 } from "./index";
 import BasicModalWindow from "components/common/BasicModalWindow";
 import BookingForm from "../BookingForm";
+
 import { TTeacher } from "shared.types";
+import { selectFavorites } from "../../../redux/favorite/selectors";
+import { addToFavorite, removeFromFavorite } from "../../../redux/favorite/favoriteSlice";
 
 type TTeacherCardProps = {
   teacher: TTeacher;
@@ -28,8 +32,17 @@ type TTeacherCardProps = {
 const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const handleBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const dispatch = useDispatch();
+
+  const favorites: TTeacher[] = useSelector(selectFavorites);
+
+  useEffect(() => {
+    setIsFavorite(favorites.findIndex((item: TTeacher) => item.id === teacher.id) !== -1);
+  }, [favorites, teacher]);
+
+  const handleBtnClick = (e: MouseEvent<HTMLButtonElement>): void => {
     if (e.target.id === "expand") {
       setIsExpanded(true);
     } else {
@@ -37,9 +50,17 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
     }
   };
 
+  const handleFavoriteBtnClick = (): void => {
+    if (!isFavorite) {
+      dispatch(addToFavorite(teacher));
+    } else {
+      dispatch(removeFromFavorite(teacher.id));
+    }
+  };
+
   return (
     <CardLi>
-      <FavoriteButton type="button">
+      <FavoriteButton type="button" isFavorite={isFavorite} onClick={handleFavoriteBtnClick}>
         <Icon iconId="favorite" />
       </FavoriteButton>
 

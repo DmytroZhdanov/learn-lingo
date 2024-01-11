@@ -14,9 +14,7 @@ const TeacherList: FC<TTeacherListProps> = ({ teachers }): ReactElement => {
     <ListUl>
       {teachers &&
         teachers.map(
-          (teacher: TTeacher): ReactElement => (
-            <TeacherCard key={teacher.avatar_url} teacher={teacher} />
-          )
+          (teacher: TTeacher): ReactElement => <TeacherCard key={teacher.id} teacher={teacher} />
         )}
     </ListUl>
   );

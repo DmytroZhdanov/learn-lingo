@@ -11,6 +11,7 @@ export type TReview = {
 };
 
 export type TTeacher = {
+  id: number;
   name: string;
   surname: string;
   languages: string[];

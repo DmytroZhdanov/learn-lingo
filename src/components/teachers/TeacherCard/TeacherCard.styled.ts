@@ -15,7 +15,7 @@ export const CardLi = styled.li`
   }
 `;
 
-export const FavoriteButton = styled.button<TStylesProps>`
+export const FavoriteButton = styled.button<TStylesProps & { isFavorite: boolean }>`
   position: absolute;
   top: 24px;
   right: 24px;
@@ -28,8 +28,9 @@ export const FavoriteButton = styled.button<TStylesProps>`
     width: 26px;
     height: 26px;
 
-    fill: none;
-    stroke: ${({ theme }) => theme.color.black};
+    fill: ${({ theme, isFavorite }) => (isFavorite ? theme.color.yellow.main : "none")};
+    stroke: ${({ theme, isFavorite }) =>
+      isFavorite ? theme.color.yellow.main : theme.color.black};
   }
 `;
 
