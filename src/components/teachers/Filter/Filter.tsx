@@ -48,7 +48,6 @@ const Filter: FC<TFilterProps> = ({
       languagesOptions.push({ value: language, label: language });
     });
 
-    console.log(languagesOptions);
     return languagesOptions;
   };
 

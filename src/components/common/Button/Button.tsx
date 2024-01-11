@@ -7,7 +7,7 @@ type TButtonProps = {
   padding: string;
   children: ReactNode;
   disabled?: boolean;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button: FC<TButtonProps> = ({
