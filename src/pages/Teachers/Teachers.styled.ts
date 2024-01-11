@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { TStylesProps } from "shared.types";
 
 export const ContainerDiv = styled.div`
   margin: 0 auto;
@@ -15,4 +16,15 @@ export const ContainerDiv = styled.div`
   @media screen and (min-width: 1244px) {
     width: 1244px;
   }
+`;
+
+export const LoadMoreButton = styled.button<TStylesProps>`
+  display: block;
+  margin: 32px auto 0;
+
+  color: ${({ theme }) => theme.color.black};
+  font-size: clamp(16px, 1.7vw, 24px);
+  text-decoration: underline;
+
+  background-color: transparent;
 `;
