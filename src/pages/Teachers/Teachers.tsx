@@ -40,6 +40,9 @@ const Teachers: FC = (): ReactElement => {
   return (
     <ContainerDiv>
       <Filter
+        languages={teachers
+          .flatMap(teacher => teacher.languages)
+          .filter((language, index, array) => array.indexOf(language) === index)}
         onInputLanguagesChange={setInputLanguages}
         onInputLevelChange={setInputLevel}
         onInputPriceChange={setInputPrice}

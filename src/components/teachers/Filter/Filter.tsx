@@ -3,6 +3,7 @@ import Select, { StylesConfig } from "react-select";
 import { ContainerDiv, SelectWrapperDiv, Label } from "./index";
 
 type TFilterProps = {
+  languages: string[];
   onInputLanguagesChange: (value: string) => void;
   onInputLevelChange: (value: string) => void;
   onInputPriceChange: (value: string) => void;
@@ -13,16 +14,6 @@ type TSelectOption = {
   label: string;
   selected?: boolean;
 };
-
-const languagesOptions: TSelectOption[] = [
-  { value: null, label: "- - Any" },
-  { value: "French", label: "French" },
-  { value: "English", label: "English" },
-  { value: "German", label: "German" },
-  { value: "Ukrainian", label: "Ukrainian" },
-  { value: "Polish", label: "Polish" },
-  { value: "Spanish", label: "Spanish" },
-];
 
 const levelOptions: TSelectOption[] = [
   { value: null, label: "- - Any" },
@@ -36,19 +27,33 @@ const levelOptions: TSelectOption[] = [
 
 const priceOptions: TSelectOption[] = [
   { value: null, label: "- - Any" },
-  { value: "10", label: "10" },
-  { value: "20", label: "20" },
-  { value: "30", label: "30" },
-  { value: "40", label: "40" },
-  { value: "50", label: "50" },
-  { value: "60", label: "60" },
+  { value: "10", label: "$10" },
+  { value: "20", label: "$20" },
+  { value: "30", label: "$30" },
+  { value: "40", label: "$40" },
+  { value: "50", label: "$50" },
+  { value: "60", label: "$60" },
 ];
 
 const Filter: FC<TFilterProps> = ({
+  languages,
   onInputLanguagesChange,
   onInputLevelChange,
   onInputPriceChange,
 }): ReactElement => {
+  const generateLanguagesOptions = (languages: string[]): TSelectOption[] => {
+    let languagesOptions: TSelectOption[] = [{ value: null, label: "- - Any" }];
+
+    languages.forEach((language: string): void => {
+      languagesOptions.push({ value: language, label: language });
+    });
+
+    console.log(languagesOptions);
+    return languagesOptions;
+  };
+
+  const languagesOptions: TSelectOption[] = generateLanguagesOptions(languages);
+
   return (
     <ContainerDiv>
       <SelectWrapperDiv>
