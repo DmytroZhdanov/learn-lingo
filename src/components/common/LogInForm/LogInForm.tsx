@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Button from "../Button";
+import Loader from "../Loader";
 import { LogInValidationSchema } from "./index";
 import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../Form.styled";
 
@@ -81,6 +82,8 @@ const LogInForm: FC<TLogInFormProps> = ({ onMobMenuClose, onModalClose }): React
           </Form>
         )}
       </Formik>
+
+      {isLoading && <Loader />}
     </ContainerDiv>
   );
 };

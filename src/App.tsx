@@ -5,6 +5,7 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { Main } from "./pages/Main";
 import PrivateRoute from "./components/PrivateRoute";
+import Loader from "components/common/Loader";
 
 import { loader as teachersLoader } from "./pages/Teachers";
 
@@ -96,7 +97,13 @@ const App: FC = (): ReactElement => {
     }
   }, [isIdTokenError, isUserDataError]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+
+      {(isIdTokenLoading || isUserDataLoading) && <Loader />}
+    </>
+  );
 };
 
 export default App;

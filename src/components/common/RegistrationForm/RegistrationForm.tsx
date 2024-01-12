@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Button from "../Button";
+import Loader from "../Loader";
 import { RegistrationValidationSchema } from "./index";
 import { ContainerDiv, TitleH2, TextP, InputWrapperDiv, ErrorP } from "../Form.styled";
 
@@ -92,6 +93,8 @@ const RegistrationForm: FC<TRegistrationFormProps> = ({
           </Form>
         )}
       </Formik>
+
+      {isLoading && <Loader />}
     </ContainerDiv>
   );
 };
