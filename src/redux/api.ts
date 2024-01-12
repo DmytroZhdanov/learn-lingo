@@ -10,7 +10,7 @@ type TCredentials = {
   displayName?: string;
 };
 
-interface IError {
+export interface IError {
   status?: number;
   data?: any;
 }

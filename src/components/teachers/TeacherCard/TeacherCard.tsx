@@ -1,6 +1,7 @@
 import { FC, MouseEvent, ReactElement, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Icon from "components/common/Icon";
 import Button from "components/common/Button";
@@ -25,6 +26,7 @@ import BookingForm from "../BookingForm";
 import { TTeacher } from "shared.types";
 import { selectFavorites } from "../../../redux/favorite/selectors";
 import { addToFavorite, removeFromFavorite } from "../../../redux/favorite/favoriteSlice";
+import { selectRefreshToken } from "../../../redux/auth/selectors";
 
 type TTeacherCardProps = {
   teacher: TTeacher;
@@ -38,6 +40,7 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
 
   const dispatch = useDispatch();
 
+  const refreshToken: string | null = useSelector(selectRefreshToken);
   const favorites: TTeacher[] = useSelector(selectFavorites);
 
   const nodeItemRef = useRef<HTMLLIElement>(null);
@@ -63,6 +66,11 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
   };
 
   const handleFavoriteBtnClick = (): void => {
+    if (!refreshToken) {
+      Notify.failure("This functionality is available only to authorized users");
+      return;
+    }
+
     if (!isFavorite) {
       dispatch(addToFavorite(teacher));
     } else {

@@ -1,12 +1,13 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Button from "../Button";
 import { RegistrationValidationSchema } from "./index";
 import { ContainerDiv, TitleH2, TextP, InputWrapperDiv, ErrorP } from "../Form.styled";
 
-import { useSignUpMutation } from "../../../redux/api";
+import { IError, useSignUpMutation } from "../../../redux/api";
 import { setCredentials } from "../../../redux/auth/authSlice";
 
 type TFormValues = {
@@ -25,13 +26,20 @@ const RegistrationForm: FC<TRegistrationFormProps> = ({
   onModalClose,
 }): ReactElement => {
   const dispatch = useDispatch();
-  const [register, status] = useSignUpMutation();
+  const [register, { isLoading, isError, error }] = useSignUpMutation();
 
   const initialValues: TFormValues = {
     displayName: "",
     email: "",
     password: "",
   };
+
+  useEffect(() => {
+    if (isError) {
+      const err = error as IError;
+      Notify.failure(err.data.error.message);
+    }
+  }, [isError]);
 
   const handleSubmit = async (values: TFormValues): Promise<void> => {
     const { displayName, email, refreshToken, idToken } = await register(values).unwrap();

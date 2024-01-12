@@ -1,12 +1,13 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Button from "../Button";
 import { LogInValidationSchema } from "./index";
 import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../Form.styled";
 
-import { useSignInMutation } from "../../../redux/api";
+import { IError, useSignInMutation } from "../../../redux/api";
 import { setCredentials } from "../../../redux/auth/authSlice";
 
 type TFormValues = {
@@ -21,12 +22,19 @@ type TLogInFormProps = {
 
 const LogInForm: FC<TLogInFormProps> = ({ onMobMenuClose, onModalClose }): ReactElement => {
   const dispatch = useDispatch();
-  const [login, status] = useSignInMutation();
+  const [login, { isLoading, isError, error }] = useSignInMutation();
 
   const initialValues: TFormValues = {
     email: "",
     password: "",
   };
+
+  useEffect(() => {
+    if (isError) {
+      const err = error as IError;
+      Notify.failure(err.data.error.message);
+    }
+  }, [isError]);
 
   const handleSubmit = async (values: TFormValues): Promise<void> => {
     const { displayName, email, refreshToken, idToken } = await login(values).unwrap();

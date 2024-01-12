@@ -1,6 +1,7 @@
 import { FC, ReactElement, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Filter from "../../components/teachers/Filter";
 import TeacherList from "../../components/teachers/TeacherList";
@@ -10,13 +11,18 @@ import { TTeacher } from "shared.types";
 import DefaultText from "components/common/DefaultText";
 
 export async function loader() {
-  const { data }: { data: TTeacher[] } = await axios.get(
-    `https://${
-      import.meta.env.VITE_PROJECT_ID
-    }-default-rtdb.europe-west1.firebasedatabase.app/.json`
-  );
+  try {
+    const { data }: { data: TTeacher[] } = await axios.get(
+      `https://${
+        import.meta.env.VITE_PROJECT_ID
+      }-default-rtdb.europe-west1.firebasedatabase.app/.json`
+    );
 
-  return data;
+    return data;
+  } catch (error) {
+    const err = error as AxiosError;
+    Notify.failure(err.message);
+  }
 }
 
 const Teachers: FC = (): ReactElement => {

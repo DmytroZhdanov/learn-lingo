@@ -1,6 +1,7 @@
 import { FC, ReactElement, useEffect } from "react";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { Main } from "./pages/Main";
 import PrivateRoute from "./components/PrivateRoute";
@@ -8,8 +9,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import { loader as teachersLoader } from "./pages/Teachers";
 
 import { selectRefreshToken } from "./redux/auth/selectors";
-import { useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
-import { setCredentials } from "./redux/auth/authSlice";
+import { IError, useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
+import { initialState, setCredentials } from "./redux/auth/authSlice";
 
 export const enum ROUTER {
   MAIN = "/",
@@ -54,9 +55,15 @@ const router = createBrowserRouter([
 
 const App: FC = (): ReactElement => {
   const refreshToken = useSelector(selectRefreshToken);
-  const [getIdToken, status] = useGetIdTokenMutation();
-  const [getUserData, userDataStatus] = useGetUserDataMutation();
   const dispatch = useDispatch();
+  const [
+    getIdToken,
+    { isLoading: isIdTokenLoading, isError: isIdTokenError, error: idTokenError },
+  ] = useGetIdTokenMutation();
+  const [
+    getUserData,
+    { isLoading: isUserDataLoading, isError: isUserDataError, error: userDataError },
+  ] = useGetUserDataMutation();
 
   useEffect(() => {
     const refresh = async (): Promise<void> => {
@@ -73,6 +80,21 @@ const App: FC = (): ReactElement => {
 
     refresh();
   }, [refreshToken]);
+
+  useEffect(() => {
+    let error;
+
+    if (isIdTokenError) {
+      error = idTokenError as IError;
+    } else if (isUserDataError) {
+      error = userDataError as IError;
+    }
+
+    if (isUserDataError || isIdTokenError) {
+      Notify.failure(error?.data.error.message);
+      dispatch(setCredentials(initialState));
+    }
+  }, [isIdTokenError, isUserDataError]);
 
   return <RouterProvider router={router} />;
 };
