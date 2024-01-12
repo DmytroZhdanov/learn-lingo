@@ -12,6 +12,7 @@ import { loader as teachersLoader } from "./pages/Teachers";
 import { selectRefreshToken } from "./redux/auth/selectors";
 import { IError, useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
 import { initialState, setCredentials } from "./redux/auth/authSlice";
+import { clearFavorite } from "./redux/favorite/favoriteSlice";
 
 export const enum ROUTER {
   MAIN = "/",
@@ -76,6 +77,8 @@ const App: FC = (): ReactElement => {
         const user = { displayName, email };
 
         dispatch(setCredentials({ user, idToken: id_token, refreshToken }));
+      } else {
+        dispatch(clearFavorite());
       }
     };
 
