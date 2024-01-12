@@ -1,4 +1,5 @@
 import { FC, ReactElement } from "react";
+
 import { InfoListDl, WrapperDiv, TermDt, LanguagesDd } from "./index";
 
 type TTeacherInfoPanelProps = {

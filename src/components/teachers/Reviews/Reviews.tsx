@@ -1,7 +1,9 @@
 import Icon from "components/common/Icon";
 import { FC, ReactElement } from "react";
-import { TReview } from "shared.types";
+
 import { ListUl, NameH3, RatingP } from "./index";
+
+import { TReview } from "shared.types";
 
 type TReviewsProps = {
   reviews: TReview[];

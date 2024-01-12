@@ -14,7 +14,7 @@ type TNavBarProps = {
 const NavBar: FC<TNavBarProps> = ({ onMobMenuClose }): ReactElement => {
   const refreshToken = useSelector(selectRefreshToken);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (!onMobMenuClose) return;
 
     onMobMenuClose();

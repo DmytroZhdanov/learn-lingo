@@ -5,10 +5,10 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import Filter from "../../components/teachers/Filter";
 import TeacherList from "../../components/teachers/TeacherList";
+import DefaultText from "../../components/common/DefaultText";
 import { ContainerDiv, LoadMoreButton } from "./index";
 
 import { TTeacher } from "shared.types";
-import DefaultText from "components/common/DefaultText";
 
 export async function loader() {
   try {
@@ -29,7 +29,7 @@ const Teachers: FC = (): ReactElement => {
   const teachers = useLoaderData() as TTeacher[];
   const [filteredTeachers, setFilteredTeachers] = useState(teachers);
   const [page, setPage] = useState(1);
-  const [showLoadMore, setShowLoadMore] = useState<boolean>(filteredTeachers.length > page * 4);
+  const [showLoadMore, setShowLoadMore] = useState(filteredTeachers.length > page * 4);
 
   const [inputLanguages, setInputLanguages] = useState<string | null>(null);
   const [inputLevel, setInputLevel] = useState<string | null>(null);

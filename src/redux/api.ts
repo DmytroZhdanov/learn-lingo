@@ -1,13 +1,56 @@
 import { BaseQueryFn, createApi } from "@reduxjs/toolkit/query/react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-
-// import { TTeacher } from "shared.types";
-import { TState } from "./auth/authSlice";
+import { boolean } from "yup";
 
 type TCredentials = {
   email: string;
   password: string;
   displayName?: string;
+};
+
+type TResponse = {
+  displayName: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  registered?: boolean;
+};
+
+type TIdTokenResponse = {
+  expires_in: string;
+  token_type: string;
+  refresh_token: string;
+  id_token: string;
+  user_id: string;
+  project_id: string;
+};
+
+type TUserData = {
+  localId: string;
+  email: string;
+  emailVerified: boolean;
+  displayName: string;
+  providerUserInfo: {
+    providerId: string;
+    displayName: string;
+    federatedId: string;
+    email: string;
+    rawId: string;
+  };
+  photoUrl: string;
+  passwordHash: string;
+  passwordUpdatedAt: number;
+  validSince: string;
+  disabled: boolean;
+  lastLoginAt: string;
+  createdAt: string;
+  customAuth: boolean;
+};
+
+type TUsersResponse = {
+  users: TUserData[];
 };
 
 export interface IError {
@@ -60,41 +103,34 @@ export const api = createApi({
     baseParams: { key: import.meta.env.VITE_API_KEY },
   }),
   endpoints: builder => ({
-    signUp: builder.mutation({
+    signUp: builder.mutation<TResponse, TCredentials>({
       query: credentials => ({
         url: "/accounts:signUp",
         method: "POST",
         data: credentials,
       }),
     }),
-    signIn: builder.mutation({
+    signIn: builder.mutation<TResponse, TCredentials>({
       query: credentials => ({
         url: "/accounts:signInWithPassword",
         method: "POST",
         data: { ...credentials, returnSecureToken: true },
       }),
     }),
-    getIdToken: builder.mutation({
+    getIdToken: builder.mutation<TIdTokenResponse, string>({
       query: refresh_token => ({
         url: "/token",
         method: "POST",
         data: { grant_type: "refresh_token", refresh_token },
       }),
     }),
-    getUserData: builder.mutation({
+    getUserData: builder.mutation<TUsersResponse, string>({
       query: idToken => ({
         url: "/accounts:lookup",
         method: "POST",
         data: { idToken },
       }),
     }),
-    // getAllCars: builder.query<TTeacher[], IQuery>({
-    //   query: ({ page = 1, make, language }) => ({
-    //     url: `/adverts${language === "uk" ? "-uk" : ""}`,
-    //     method: "get",
-    //     params: { page, make, limit: 12 },
-    //   }),
-    // }),
   }),
 });
 

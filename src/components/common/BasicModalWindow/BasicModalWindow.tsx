@@ -31,7 +31,7 @@ const BasicModalWindow: FC<TModalProps> = (props): ReactElement => {
       disableBodyScroll(true);
     }
 
-    const onEscKeyPress = (e: KeyboardEvent) => {
+    const onEscKeyPress = (e: KeyboardEvent): void => {
       if (e.key === "Escape") {
         onClose();
       }

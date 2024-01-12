@@ -54,11 +54,13 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
   }, []);
 
   useEffect(() => {
-    setIsFavorite(favorites.findIndex((item: TTeacher) => item.id === teacher.id) !== -1);
+    setIsFavorite(favorites.findIndex((item: TTeacher): boolean => item.id === teacher.id) !== -1);
   }, [favorites, teacher]);
 
   const handleBtnClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    if (e.target.id === "expand") {
+    const { target } = e;
+
+    if ((target as HTMLButtonElement).id === "expand") {
       setIsExpanded(true);
     } else {
       setIsModalOpen(true);

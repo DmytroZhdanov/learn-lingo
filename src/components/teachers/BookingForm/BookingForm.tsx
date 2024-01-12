@@ -37,7 +37,7 @@ const BookingForm: FC<TBookingFormProps> = ({ teacherName, teacherAvatar }): Rea
     tel: "",
   };
 
-  const handleSubmit = (values: TFormValues) => {
+  const handleSubmit = (values: TFormValues): void => {
     console.log(values);
   };
 

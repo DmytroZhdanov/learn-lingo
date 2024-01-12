@@ -19,11 +19,11 @@ const Header: FC = (): ReactElement => {
     };
   }, []);
 
-  const handleResize = () => {
+  const handleResize = (): void => {
     setIsDesktop(window.innerWidth >= 1120);
   };
 
-  const handleBurgerClick = () => {
+  const handleBurgerClick = (): void => {
     setIsMobMenuOpen(true);
   };
 

@@ -1,8 +1,9 @@
 import { FC, ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "components/common/Button";
 import { ContainerDiv, TitleH1, TitleSpan, TextP } from "./index";
-import { useNavigate } from "react-router-dom";
+
 import { ROUTER } from "../../../App";
 
 const HeroLeft: FC = (): ReactElement => {
@@ -19,7 +20,11 @@ const HeroLeft: FC = (): ReactElement => {
         proficiency to new heights by connecting with highly qualified and experienced tutors.
       </TextP>
 
-      <Button type="button" padding="16px 88px" onClick={() => navigate(`/${ROUTER.TEACHERS}`)}>
+      <Button
+        type="button"
+        padding="16px 88px"
+        onClick={(): void => navigate(`/${ROUTER.TEACHERS}`)}
+      >
         Get started
       </Button>
     </ContainerDiv>

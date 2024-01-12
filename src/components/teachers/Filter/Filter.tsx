@@ -1,5 +1,5 @@
-import { FC, ReactElement, useState } from "react";
-import Select, { StylesConfig } from "react-select";
+import { FC, ReactElement } from "react";
+import Select, { CSSObjectWithLabel, StylesConfig } from "react-select";
 import { ContainerDiv, SelectWrapperDiv, Label } from "./index";
 
 type TFilterProps = {
@@ -106,43 +106,48 @@ const Filter: FC<TFilterProps> = ({
 
 const styles: StylesConfig = {
   indicatorSeparator: () => ({ display: "none" }),
-  control: baseStyles => ({
-    ...baseStyles,
+  control: baseStyles =>
+    ({
+      ...baseStyles,
 
-    fontSize: "18px",
-    fontWeight: 500,
-    lineHeight: 20 / 18,
+      fontSize: "18px",
+      fontWeight: 500,
+      lineHeight: 20 / 18,
 
-    padding: "6px 10px 6px 18px",
+      padding: "6px 10px 6px 18px",
 
-    border: "none",
-    borderRadius: "14px",
-    backgroundColor: "#ffffff",
-  }),
-  valueContainer: baseStyles => ({
-    ...baseStyles,
+      border: "none",
+      borderRadius: "14px",
+      backgroundColor: "#ffffff",
+    } as CSSObjectWithLabel),
+  valueContainer: baseStyles =>
+    ({
+      ...baseStyles,
 
-    padding: 0,
-  }),
-  input: baseStyles => ({
-    ...baseStyles,
+      padding: 0,
+    } as CSSObjectWithLabel),
+  input: baseStyles =>
+    ({
+      ...baseStyles,
 
-    margin: 0,
-    padding: 0,
-  }),
-  dropdownIndicator: baseStyles => ({
-    ...baseStyles,
-    color: "#121417",
-  }),
-  menu: baseStyles => ({
-    ...baseStyles,
+      margin: 0,
+      padding: 0,
+    } as CSSObjectWithLabel),
+  dropdownIndicator: baseStyles =>
+    ({
+      ...baseStyles,
+      color: "#121417",
+    } as CSSObjectWithLabel),
+  menu: baseStyles =>
+    ({
+      ...baseStyles,
 
-    marginTop: "4px",
-    padding: "14px 18px",
+      marginTop: "4px",
+      padding: "14px 18px",
 
-    boxShadow: "none",
-    borderRadius: "12px",
-  }),
+      boxShadow: "none",
+      borderRadius: "12px",
+    } as CSSObjectWithLabel),
   menuList: (_, state) => ({
     height: state.selectProps.inputId === "languages" ? "160px" : "132px",
 
