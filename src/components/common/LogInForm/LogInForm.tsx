@@ -10,6 +10,7 @@ import { ContainerDiv, TextP, TitleH2, InputWrapperDiv, ErrorP } from "../Form.s
 
 import { IError, useSignInMutation } from "../../../redux/api";
 import { setCredentials } from "../../../redux/auth/authSlice";
+import { AppDispatch } from "../../../redux/store";
 
 type TFormValues = {
   email: string;
@@ -22,7 +23,7 @@ type TLogInFormProps = {
 };
 
 const LogInForm: FC<TLogInFormProps> = ({ onMobMenuClose, onModalClose }): ReactElement => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [login, { isLoading, isError, error }] = useSignInMutation();
 
   const initialValues: TFormValues = {

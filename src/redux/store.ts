@@ -36,15 +36,14 @@ export const store = configureStore({
       favoriteReducer
     ),
   },
-  middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware({
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
-    api.middleware,
-  ],
+    }).concat(api.middleware),
 });
 
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

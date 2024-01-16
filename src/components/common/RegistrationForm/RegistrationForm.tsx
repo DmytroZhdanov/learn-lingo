@@ -10,6 +10,7 @@ import { ContainerDiv, TitleH2, TextP, InputWrapperDiv, ErrorP } from "../Form.s
 
 import { IError, useSignUpMutation } from "../../../redux/api";
 import { setCredentials } from "../../../redux/auth/authSlice";
+import { AppDispatch } from "../../../redux/store";
 
 type TFormValues = {
   displayName: string;
@@ -26,7 +27,7 @@ const RegistrationForm: FC<TRegistrationFormProps> = ({
   onMobMenuClose,
   onModalClose,
 }): ReactElement => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [register, { isLoading, isError, error }] = useSignUpMutation();
 
   const initialValues: TFormValues = {

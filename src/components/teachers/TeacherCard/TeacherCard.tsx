@@ -27,6 +27,7 @@ import { TTeacher } from "shared.types";
 import { selectFavorites } from "../../../redux/favorite/selectors";
 import { addToFavorite, removeFromFavorite } from "../../../redux/favorite/favoriteSlice";
 import { selectRefreshToken } from "../../../redux/auth/selectors";
+import { AppDispatch } from "../../../redux/store";
 
 type TTeacherCardProps = {
   teacher: TTeacher;
@@ -38,7 +39,7 @@ const TeacherCard: FC<TTeacherCardProps> = ({ teacher }): ReactElement => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const refreshToken: string | null = useSelector(selectRefreshToken);
   const favorites: TTeacher[] = useSelector(selectFavorites);

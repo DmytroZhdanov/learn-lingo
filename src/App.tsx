@@ -13,6 +13,7 @@ import { selectRefreshToken } from "./redux/auth/selectors";
 import { IError, useGetIdTokenMutation, useGetUserDataMutation } from "./redux/api";
 import { initialState, setCredentials } from "./redux/auth/authSlice";
 import { clearFavorite } from "./redux/favorite/favoriteSlice";
+import { AppDispatch } from "./redux/store";
 
 export const enum ROUTER {
   MAIN = "/",
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
 
 const App: FC = (): ReactElement => {
   const refreshToken = useSelector(selectRefreshToken);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [
     getIdToken,
     { isLoading: isIdTokenLoading, isError: isIdTokenError, error: idTokenError },

@@ -9,6 +9,7 @@ import { List, Button, RegButton } from "./index";
 
 import { selectRefreshToken } from "../../../redux/auth/selectors";
 import { initialState, setCredentials } from "../../../redux/auth/authSlice";
+import { AppDispatch } from "../../../redux/store";
 
 enum FORM {
   LOGIN = "login",
@@ -25,7 +26,7 @@ const AuthBar: FC<TAuthBarProps> = ({ onMobMenuClose }): ReactElement => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [form, setForm] = useState<TForm>(null);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const refreshToken = useSelector(selectRefreshToken);
 
   const handleLogInClick = (): void => {
